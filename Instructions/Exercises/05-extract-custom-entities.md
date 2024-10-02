@@ -80,6 +80,8 @@ lab:
         - **Blob 存放區容器**：classifieds
         - **您的檔案是否以類別標記？**：否，我需要將檔案標記為此專案的一部分
 
+> **提示**：如果您收到未獲授權執行此作業的錯誤，您必須新增角色指派。 若要修正此錯誤，請為執行實驗室的使用者對儲存體帳戶新增「儲存體 Blob 資料參與者」角色。 如需更多詳細資料，請參閱[文件頁面](https://learn.microsoft.com/azure/ai-services/language-service/custom-named-entity-recognition/how-to/create-project?tabs=portal%2Clanguage-studio#enable-identity-management-for-your-resource)。
+
 ## 標記您的資料
 
 現在您已建立專案，您必須標記資料，以定型模型識別實體的方式。
