@@ -3,6 +3,7 @@ lab:
   title: 翻譯文字
   module: Module 3 - Getting Started with Natural Language Processing
 ---
+{% assign site.title = page.lab.title %}
 
 # 翻譯文字
 
