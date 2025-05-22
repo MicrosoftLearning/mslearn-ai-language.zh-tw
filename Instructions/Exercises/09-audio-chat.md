@@ -6,7 +6,7 @@ lab:
 
 # 開發具備音訊功能的聊天應用程式
 
-在此練習中，您會使用 *Phi-4-multimodal-instruct* 生成式 AI 模型，來產生對包含音訊檔案之提示的回應。 您將開發一個應用程式，透過使用 Azure AI Foundry 和 Azure AI 模型推斷服務，為雜貨店中的新鮮產品提供 AI 協助。
+在此練習中，您會使用 *Phi-4-multimodal-instruct* 生成式 AI 模型，來產生對包含音訊檔案之提示的回應。 您將開發一款應用程式，透過使用 Azure AI Foundry 和 Azure AI 模型推斷服務來彙總客戶留下的語音訊息，為農產品供應商公司提供 AI 幫助。
 
 本練習大約需要 **30** 分鐘的時間。
 
@@ -95,13 +95,13 @@ lab:
     **Python**
 
     ```
-    cd mslearn-ai-audio/Labfiles/09-audio-chat/python
+    cd mslearn-ai-audio/Labfiles/09-audio-chat/Python
     ```
 
     **C#**
 
     ```
-    cd mslearn-ai-audio/Labfiles/09-audio-chat/c-sharp
+    cd mslearn-ai-audio/Labfiles/09-audio-chat/C-sharp
     ```
 
 1. 在 Cloud Shell 命令列窗格中，輸入下列命令來安裝您將使用的程式庫：
@@ -111,7 +111,7 @@ lab:
     ```
     python -m venv labenv
     ./labenv/bin/Activate.ps1
-    pip install python-dotenv azure-identity azure-ai-projects azure-ai-inference
+    pip install -r requirements.txt azure-identity azure-ai-projects azure-ai-inference
     ```
 
     **C#**
@@ -173,9 +173,6 @@ lab:
         SystemMessage,
         UserMessage,
         TextContentItem,
-        AudioContentItem,
-        InputAudio,
-        AudioContentFormat,
     )
     ```
 
@@ -230,13 +227,13 @@ lab:
 
 1. 在 **audio-chat.py** 檔案的程式碼編輯器中，於迴圈區段的 [取得音訊輸入的回應]**** 註解底下，新增下列程式碼以提交包含下列音訊的提示：
 
-    <video controls src="../media/manzanas.mp4" title="對蘋果的要求" width="150"></video>
+    <video controls src="../media/avocados.mp4" title="對鱷梨的要求" width="150"></video>
 
     **Python**
 
     ```python
     # Get a response to audio input
-    file_path = "https://github.com/microsoftlearning/mslearn-ai-language/raw/refs/heads/main/labfiles/09-audio-chat/data/manzanas.mp3"
+    file_path = "https://github.com/MicrosoftLearning/mslearn-ai-language/raw/refs/heads/main/Labfiles/09-audio-chat/data/avocados.mp3"
     response = chat_client.complete(
         messages=[
             SystemMessage(system_message),
@@ -258,7 +255,7 @@ lab:
 
     ```csharp
     // Get a response to audio input
-    string audioUrl = "https://github.com/microsoftlearning/mslearn-ai-language/raw/refs/heads/main/labfiles/09-audio-chat/data/manzanas.mp3";
+    string audioUrl = "https://github.com/MicrosoftLearning/mslearn-ai-language/raw/refs/heads/main/Labfiles/09-audio-chat/data/avocados.mp3";
     var requestOptions = new ChatCompletionsOptions()
     {
         Messages =
@@ -290,21 +287,25 @@ lab:
     dotnet run
     ```
 
-1. 當系統給提示時，輸入下列提示：`What is this customer saying in English?`
+1. 當系統給提示時，輸入下列提示 
+
+    ```
+    Can you summarize this customer's voice message?
+    ```
 
 1. 檢閱回應。
 
-### 使用不同提示
+### 使用不同的音訊檔案
 
 1. 請在應用程式程式代碼的程式代碼編輯器中，前往 [迴圈] 區段中，尋找您之前在註解那邊，**[取得音訊輸入的回應] **新增的程式碼。 然後修改程式碼，如下所示，以便選取不同音訊檔案：
 
-    <video controls src="../media/caomei.mp4" title="Strawberries 請求" width="150"></video>
+    <video controls src="../media/fresas.mp4" title="Strawberries 請求" width="150"></video>
 
     **Python**
 
     ```python
     # Get a response to audio input
-    file_path = "https://github.com/microsoftlearning/mslearn-ai-language/raw/refs/heads/main/labfiles/09-audio-chat/data/caomei.mp3"
+    file_path = "https://github.com/MicrosoftLearning/mslearn-ai-language/raw/refs/heads/main/Labfiles/09-audio-chat/data/fresas.mp3"
     response = chat_client.complete(
         messages=[
             SystemMessage(system_message),
@@ -326,7 +327,7 @@ lab:
 
     ```csharp
     // Get a response to audio input
-    string audioUrl = "https://github.com/microsoftlearning/mslearn-ai-language/raw/refs/heads/main/labfiles/09-audio-chat/data/caomei.mp3";
+    string audioUrl = "https://github.com/MicrosoftLearning/mslearn-ai-language/raw/refs/heads/main/Labfiles/09-audio-chat/data/fresas.mp3";
     var requestOptions = new ChatCompletionsOptions()
     {
         Messages =
@@ -358,10 +359,10 @@ lab:
     dotnet run
     ```
 
-1. 當系統提示時，輸入下列提示：
-
+1. 當系統提示時，輸入下列提示： 
+    
     ```
-    A customer left this voice message, can you summarize it?
+    Can you summarize this customer's voice message? Is it time-sensitive?
     ```
 
 1. 檢閱回應。 然後輸入 `quit`以結束程式。
