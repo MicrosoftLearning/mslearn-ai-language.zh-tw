@@ -56,7 +56,7 @@ lab:
     git clone https://github.com/microsoftlearning/mslearn-ai-language
     ```
 
-    > **秘訣**：當您將命令輸入到 Cloud Shell 時，輸出可能會佔用大量的螢幕緩衝區。 您可以透過輸入 `cls` 命令來清除螢幕，以便更輕鬆地專注於每個工作。
+    > **提示**：當您將命令輸入到 Cloud Shell 中時，輸出可能會佔用大量的螢幕緩衝區。 您可以透過輸入 `cls` 命令來清除螢幕，以便更輕鬆地專注於每個工作。
 
 1. 複製存放庫之後，瀏覽至包含應用程式碼檔案的資料夾：  
 
