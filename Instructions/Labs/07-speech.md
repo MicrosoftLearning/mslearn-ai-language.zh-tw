@@ -243,9 +243,17 @@ lab:
     
     <video controls src="https://github.com/MicrosoftLearning/mslearn-ai-language/raw/refs/heads/main/Instructions/media/Output2.mp4" title="時間是 5:30。 是時候結束這個實驗了。" width="150"></video>
 
-## (選用) 若您有麥克風和喇叭，該怎麼辦？
+## 清理
 
-在本練習中，您使用音訊檔案進行語音輸入和輸出。 讓我們看看如何修改程式碼以使用音訊硬體。
+如果您已完成 Azure AI 語音探索，您應該刪除在本練習中建立的資源，以避免產生不必要的 Azure 成本。
+
+1. 關閉 [Azure Cloud Shell] 窗格
+1. 在 Azure 入口網站中，瀏覽至您在此實驗室中建立的 Azure AI 語音資源。
+1. 在資源頁面上選取 [刪除]****，然後依照指示刪除資源。
+
+## 如果您有麥克風和喇叭，該怎麼辦？
+
+在本練習中，我們使用的 Azure Cloud Shell 環境不支援音訊硬體，因此請使用音訊檔案進行語音輸入和輸出。 讓我們來看看如何修改程式碼，以便在您有可用的音訊硬體時加以使用。
 
 ### 使用麥克風進行語音辨識
 
@@ -292,14 +300,6 @@ if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
 ```
 
 > **注意**：系統預設喇叭是預設音訊輸出，因此您也可以完全省略 AudioConfig！
-
-## 清理
-
-如果您已完成 Azure AI 語音探索，您應該刪除在本練習中建立的資源，以避免產生不必要的 Azure 成本。
-
-1. 關閉 [Azure Cloud Shell] 窗格
-1. 在 Azure 入口網站中，瀏覽至您在此實驗室中建立的 Azure AI 語音資源。
-1. 在資源頁面上選取 [刪除]****，然後依照指示刪除資源。
 
 ## 其他相關資訊
 

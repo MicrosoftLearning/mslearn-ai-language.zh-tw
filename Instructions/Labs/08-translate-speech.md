@@ -227,7 +227,7 @@ Azure AI 語音包含語音翻譯 API，可讓您用來翻譯口語。 例如，
 
 ## 如果您有麥克風和喇叭，該怎麼辦？
 
-在本練習中，您使用音訊檔案進行語音輸入和輸出。 讓我們看看如何修改程式碼以使用音訊硬體。
+在本練習中，我們使用的 Azure Cloud Shell 環境不支援音訊硬體，因此請使用音訊檔案進行語音輸入和輸出。 讓我們來看看如何修改程式碼，以便在您有可用的音訊硬體時加以使用。
 
 ### 使用麥克風進行語音翻譯
 
@@ -258,7 +258,7 @@ Azure AI 語音包含語音翻譯 API，可讓您用來翻譯口語。 例如，
             "hi": "hi-IN-MadhurNeural"
    }
    speech_config.speech_synthesis_voice_name = voices.get(targetLanguage)
-   audio_config_out = speech_sdk.audio.AudioConfig(use_default_speaker=True)
+   audio_config_out = speech_sdk.audio.AudioOutputConfig(use_default_speaker=True)
    speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config, audio_config_out)
    speak = speech_synthesizer.speak_text_async(translation).get()
    if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
