@@ -248,7 +248,7 @@ cd src
 1. 在 Cloud Shell 中執行下列命令，開始編輯部署指令碼。
 
     ```bash
-    cd ~/voice-live-web
+    cd ~/01-voice-live-web
     ```
     
     ```bash
