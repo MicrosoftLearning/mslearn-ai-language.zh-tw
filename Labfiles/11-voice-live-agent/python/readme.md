@@ -1,73 +1,73 @@
-# 需求
+# Requirements
 
-## 在 Cloud Shell 中執行
+## Run in Cloud Shell
 
-* 具有 OpenAI 存取權的 Azure 訂閱
-* 如果在 Azure Cloud Shell 中執行，請選擇 Bash 殼層。 Azure CLI 和 Azure Developer CLI 包含在 Cloud Shell 之中。
+* Azure subscription with OpenAI access
+* If running in the Azure Cloud Shell, choose the Bash shell. The Azure CLI and Azure Developer CLI are included in the Cloud Shell.
 
-## 在本機執行
+## Run locally
 
-* 執行部署指令碼之後，即可在本機執行 Web 應用程式：
+* You can run the web app locally after running the deployment script:
     * [Azure Developer CLI (azd)](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd)
     * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-    * 具有 OpenAI 存取權的 Azure 訂閱
+    * Azure subscription with OpenAI access
 
 
-## 環境變數
+## Environment Variables
 
-`.env` 檔案是由 *azdeploy.sh* 指令碼所建立。 AI 模型端點、API 金鑰和模型名稱是在資源部署期間新增。
+The  `.env` file is created by the *azdeploy.sh* script. The AI model endpoint, API key, and model name are added during the deployment of the resources.
 
-## Azure 資源部署
+## Azure resource deployment
 
-提供的 `azdeploy.sh` 會在 Azure 中建立必要資源：
+The provided `azdeploy.sh` creates the required resources in Azure:
 
-* 請根據需求變更指令碼頂端的兩個變數，不要變更其他任何內容。
-* 指令碼：
-    * 使用 AZD 部署 *gpt-4o* 模型。
-    * 建立 Azure Container Registry 服務
-    * 使用 ACR 工作組建 Dockerfile 映像，並將其部署至 ACR
-    * 建立 App Service 方案
-    * 建立 App Service Web 應用程式
-    * 在 ACR 中設定容器映像的 Web 應用程式
-    * 設定 Web 應用程式環境變數
-    * 指令碼會提供 App Service 端點
+* Change the two variables at the top of the script to match your needs, don't change anything else.
+* The script:
+    * Deploys the *gpt-4o* model using AZD.
+    * Creates Azure Container Registry service
+    * Uses ACR tasks to build and deploy the Dockerfile image to ACR
+    * Creates the App Service Plan
+    * Creates the App Service Web App
+    * Configures the web app for container image in ACR
+    * Configures the web app environment variables
+    * The script will provide the App Service endpoint
 
-指令碼提供兩個部署選項：1. 完整部署;和 2. 僅重新部署映像。 如果您想在應用程式中實驗變更，選項 2 僅適用於部署後。 
+The script provides two deployment options: 1. Full deployment; and 2. Redeploy the image only. Option 2 is only for post-deployment when you want to experiment with changes in the application. 
 
-> 注意：您可以使用命令 `bash azdeploy.sh` 在 PowerShell 或 Bash 中執行指令碼；此命令還允許您在 Bash 中執行指令碼，無需將其設為可執行檔。
+> Note: You can run the script in PowerShell, or Bash, using the `bash azdeploy.sh` command, this command also let's you run the script in Bash without having to make it an executable.
 
-## 本機開發
+## Local development
 
-### 將 AI 模型佈建至 Azure
+### Provision AI model to Azure
 
-您可以在本機執行專案，並依照下列步驟只佈建 AI 模型：
+You can run the run the project locally and only provision the AI model following these steps:
 
-1. **初始化環境** (選擇描述性名稱)：
+1. **Initialize environment** (choose a descriptive name):
 
    ```bash
    azd env new gpt-realtime-lab --confirm
    # or: azd env new your-name-gpt-experiment --confirm
    ```
    
-   **重要**：此名稱會成為 Azure 資源名稱的一部分！  
-   `--confirm` 旗標會將此設定為預設環境，不會另外提示。
+   **Important**: This name becomes part of your Azure resource names!  
+   The `--confirm` flag sets this as your default environment without prompting.
 
-1. **設定您的資源群組**：
+1. **Set your resource group**:
 
    ```bash
    azd env set AZURE_RESOURCE_GROUP "rg-your-name-gpt"
    ```
 
-1. **登入和佈建 AI 資源**：
+1. **Login and provision AI resources**:
 
    ```bash
    az login
    azd provision
    ```
 
-    > **重要**：請勿執行 `azd deploy`：此應用程式尚未在 AZD 範本中設定。
+    > **Important**: Do NOT run `azd deploy` - the app is not configured in the AZD templates.
 
-如果您只使用 `azd provision` 方法佈建模型，則必須使用下列項目在目錄的根目錄中建立 `.env` 檔案：
+If you only provisioned the model using the `azd provision` method you MUST create a `.env` file in the root of the directory with the following entries:
 
 ```
 AZURE_VOICE_LIVE_ENDPOINT=""
@@ -78,27 +78,27 @@ VOICE_LIVE_INSTRUCTIONS="You are a helpful AI assistant with a focus on world hi
 VOICE_LIVE_VERBOSE="" #Suppresses excessive logging to the terminal if running locally
 ```
 
-注意：
+Notes:
 
-1. 該端點是模型的端點，應只包含 `https://<proj-name>.cognitiveservices.azure.com`。
-1. API 金鑰是模型的金鑰。
-1. 此模型是部署期間使用的模型名稱。
-1. 您可以從 AI Foundry 入口網站擷取這些值。
+1. The endpoint is the endpoint for the model and it should only include `https://<proj-name>.cognitiveservices.azure.com`.
+1. The API key is the key for the model.
+1. The model is the model name used during deployment.
+1. You can retrieve these values from the AI Foundry portal.
 
-### 在本機執行專案
+### Running the project locally
 
-專案雖是使用 **uv** 建立和管理，但不需要執行。 
+The project was was created and managed using **uv**, but it is not required to run. 
 
-如果您已安裝 **uv**，則請：
+If you have **uv** installed:
 
-* 執行 `uv venv` 建立環境
-* 執行 `uv sync` 新增套件
-* 為 Web 應用程式建立 `uv run web` 別名來啟動 `flask_app.py` 指令碼。
-* 使用 `uv pip compile pyproject.toml -o requirements.txt` 建立的 requirements.txt 檔案
+* Run `uv venv` to create the environment
+* Run `uv sync` to add packages
+* Alias created for web app: `uv run web` to start the `flask_app.py` script.
+* requirements.txt file created with `uv pip compile pyproject.toml -o requirements.txt`
 
-如果沒有安裝 **uv**，則請：
+If you don't have **uv** installed:
 
-* 建立環境：`python -m venv .venv`
-* 啟動環境：`.\.venv\Scripts\Activate.ps1`
-* 安裝相依性：`pip install -r requirements.txt`
-* 從專案根目錄執行應用程式：`python .\src\real_time_voice\flask_app.py`
+* Create environment: `python -m venv .venv`
+* Activate environment: `.\.venv\Scripts\Activate.ps1`
+* Install dependencies: `pip install -r requirements.txt`
+* Run application (from project root): `python .\src\real_time_voice\flask_app.py`
