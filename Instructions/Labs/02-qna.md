@@ -44,7 +44,7 @@ lab:
 
 ## 建立問題解答專案
 
-若要在 Azure AI 語言資源中建立問題回答的知識庫，您可以使用 Language Studio 入口網站來建立問題解答專案。 在此情況下，您將建立知識庫，其中包含 [Microsoft Learn](https://docs.microsoft.com/learn) 的問題和解答。
+若要在 Azure AI 語言資源中建立問題回答的知識庫，您可以使用 Language Studio 入口網站來建立問題解答專案。 在此情況下，您將建立知識庫，其中包含 [Microsoft Learn](https://learn.microsoft.com/training/) 的問題和解答。
 
 1. 在新的瀏覽器索引標籤中，開啟位於 [https://language.cognitive.azure.com/](https://language.cognitive.azure.com/) 的 Language Studio 入口網站，然後使用與您 Azure 訂用帳戶相關聯的 Microsoft 帳戶進行登入。
 1. 若系統提示您選擇語言資源，請選取下列設定：
@@ -75,7 +75,7 @@ lab:
 
 1. 在問題解答專案的 [管理來源]**** 頁面上，於 [&#9547; 新增來源]**** 清單中，選取 [URL]****。 然後在 [新增 URL]**** 對話方塊中，選取 [&#9547; 新增 url]**** 並設定下列名稱和 URL，再選取 [全部新增]**** 以將其新增至知識庫：
     - **名稱**：`Learn FAQ Page`
-    - **URL**：`https://docs.microsoft.com/en-us/learn/support/faq`
+    - **URL**：`https://learn.microsoft.com/en-us/training/support/faq?pivots=general`
 1. 在問題解答專案的 [管理來源]**** 頁面上，於 [&#9547; 新增來源]**** 清單中，選取 [Chitchat]****。 在 [新增閒聊]**** 對話方塊中，選取 [好記]****，然後選取 [新增閒聊]****。
 
 ## 編輯知識庫
@@ -84,18 +84,18 @@ lab:
 
 1. 在 Language Studio 的「LearnFAQ」**** 專案中，選取 [編輯知識庫]**** 頁面，以查看現有的問題與答案配對 (如果顯示秘訣，請閱讀秘訣並選擇 [了解]**** 以關閉，或選取 [略過所有]****)
 1. 在知識庫的 [問題答案組合]**** 索引標籤上選取 [&#65291;]****，並使用下列設定建立新的問題答案組合：
-    - **來源**： `https://docs.microsoft.com/en-us/learn/support/faq`
-    - **問題**：`What are Microsoft credentials?`
-    - **答案**：`Microsoft credentials enable you to validate and prove your skills with Microsoft technologies.`
+    - **來源**： `https://learn.microsoft.com/en-us/training/support/faq?pivots=general`
+    - **問題**：`What are the different types of modules on Microsoft Learn?`
+    - **答案**：`Microsoft Learn offers various types of training modules, including role-based learning paths, product-specific modules, and hands-on labs. Each module contains units with lessons and knowledge checks to help you learn at your own pace.`
 1. 選取**完成**。
-1. 在建立的「什麼是 Microsoft 認證？」**** 問題的頁面中，展開 [替代問題]****。 然後新增替代問題 `How can I demonstrate my Microsoft technology skills?`。
+1. 在建立以下問題：**Microsoft Learn 有哪些不同類型的模組？** 的目標頁面上，展開 [**替代問題**]。 然後新增替代問題 `How are training modules organized?`。
 
     在某些情況下，有需要讓使用者能夠追蹤答案，方法是透過建立「多回合」** 交談，以便使用者能反復精簡問題以取得所需的答案。
 
-1. 在您為認證問題輸入的答案底下，展開 [後續提示]****，並新增以下後續提示：
-    - **提示中向使用者顯示的文字**：`Learn more about credentials`。
-    - 選取 [建立新配對的連結]**** 索引標籤，然後輸入這段文字：`You can learn more about credentials on the [Microsoft credentials page](https://docs.microsoft.com/learn/credentials/).`
-    - 選取 [僅在內容流程中顯示]****。 此選項可確保答案只會在原始認證問題的後續問題內容中傳回。
+1. 在您為模組類型問題輸入的答案底下，展開 [**後續提示**]，並新增以下後續提示：
+    - **提示中向使用者顯示的文字**：`Learn more about training`。
+    - 選取 [建立新配對的連結]**** 索引標籤，然後輸入這段文字：`You can explore modules and learning paths on the [Microsoft Learn training page](https://learn.microsoft.com/training/).`
+    - 選取 [僅在內容流程中顯示]****。 此選項可確保答案只會在原始模組問題類型的跟進問題內容中傳回。
 1. 選取 [新增提示]****。
 
 ## 定型和測試知識庫
@@ -107,8 +107,8 @@ lab:
 1. 在測試窗格中，在頂端取消選取 [包含簡短回應]**** (如果尚未取消選取)。 然後在底部輸入訊息 `Hello`。 應該傳回適當的回應。
 1. 在測試窗格底部輸入訊息 `What is Microsoft Learn?`。 應該會從常見問題集中傳回適當的回應。
 1. 輸入訊息 `Thanks!` 應會傳回適當的閒聊回應。
-1. 輸入訊息 `Tell me about Microsoft credentials`。 您建立的答案應該會連同後續提示連結一起傳回。
-1. 選取 [深入了解認證]**** 後續連結。 應該會傳回具有認證頁面連結的後續答案。
+1. 輸入訊息 `What are the different types of modules on Microsoft Learn?`。 您建立的答案應該會連同後續提示連結一起傳回。
+1. 選取**深入瞭解訓練**跟進連結。 系統應會傳回具有訓練頁面連結的跟進答案。
 1. 完成知識庫測試之後，關閉測試窗格。
 
 ## 部署知識庫
